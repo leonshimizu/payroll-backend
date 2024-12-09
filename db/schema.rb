@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_143907) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_09_144143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_143907) do
     t.index ["company_id"], name: "index_departments_on_company_id"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.bigint "department_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "employee_number"
+    t.string "payroll_type"
+    t.decimal "pay_rate", precision: 12, scale: 2
+    t.string "filing_status"
+    t.decimal "retirement_rate", precision: 5, scale: 4
+    t.decimal "roth_retirement_rate", precision: 5, scale: 4
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_employees_on_department_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -40,4 +55,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_143907) do
   end
 
   add_foreign_key "departments", "companies"
+  add_foreign_key "employees", "departments"
 end
