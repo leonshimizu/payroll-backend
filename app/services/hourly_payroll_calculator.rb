@@ -1,3 +1,4 @@
+# app/services/hourly_payroll_calculator.rb
 class HourlyPayrollCalculator < PayrollCalculator
   def calculate
     calculate_gross_pay
@@ -6,7 +7,7 @@ class HourlyPayrollCalculator < PayrollCalculator
     calculate_withholding
     calculate_social_security
     calculate_medicare
-    payroll_record.calculate_total_deductions_and_additions
+    calculate_total_deductions_and_additions
     calculate_net_pay
   end
 
@@ -14,6 +15,9 @@ class HourlyPayrollCalculator < PayrollCalculator
 
   def calculate_gross_pay
     overtime_pay = payroll_record.overtime_hours_worked.to_f * employee.pay_rate * 1.5
-    payroll_record.gross_pay = ((payroll_record.hours_worked * employee.pay_rate) + overtime_pay + payroll_record.reported_tips.to_f).round(2)
+    payroll_record.gross_pay = ((payroll_record.hours_worked.to_f * employee.pay_rate) +
+                                overtime_pay +
+                                payroll_record.reported_tips.to_f +
+                                payroll_record.bonus.to_f).round(2)
   end
 end

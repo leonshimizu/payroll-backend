@@ -1,3 +1,4 @@
+# app/services/salary_payroll_calculator.rb
 class SalaryPayrollCalculator < PayrollCalculator
   def calculate
     calculate_gross_pay
@@ -6,16 +7,17 @@ class SalaryPayrollCalculator < PayrollCalculator
     calculate_withholding
     calculate_social_security
     calculate_medicare
-    payroll_record.calculate_total_deductions_and_additions
+    calculate_total_deductions_and_additions
     calculate_net_pay
   end
 
   private
 
   def calculate_gross_pay
-    # Assuming employee.pay_rate is per pay period or annual divided by pay periods handled externally.
-    # If pay_rate is per pay period (e.g., bi-weekly), then:
-    payroll_record.gross_pay = employee.pay_rate.round(2)
-    payroll_record.gross_pay += payroll_record.bonus.to_f if payroll_record.bonus.present?
+    # Example: Assume pay_rate is annual, and we pay bi-weekly (26 periods per year).
+    # Add reported_tips and bonus if any.
+    payroll_record.gross_pay = ((employee.pay_rate / 26.0) +
+                                payroll_record.reported_tips.to_f +
+                                payroll_record.bonus.to_f).round(2)
   end
 end
