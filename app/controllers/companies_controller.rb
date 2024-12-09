@@ -5,11 +5,11 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.all
-    render json: @companies
+    render json: @companies.as_json(methods: [ :employee_count ])
   end
 
   def show
-    render json: @company
+    render json: @company.as_json(methods: [ :employee_count ])
   end
 
   def create
