@@ -20,6 +20,9 @@ gem "bcrypt", "~> 3.1.7"
 # For JSON Web Tokens
 gem "jwt", "~> 2.2"
 
+# Used to parse Excel/CSV files
+gem "roo"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
