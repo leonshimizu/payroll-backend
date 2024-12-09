@@ -11,6 +11,15 @@ gem "puma", ">= 5.0"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
+# Handles Cross-Origin Resource Sharing
+gem "rack-cors"
+
+# For secure password hashing
+gem "bcrypt", "~> 3.1.7"
+
+# For JSON Web Tokens
+gem "jwt", "~> 2.2"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -39,5 +48,3 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
-
