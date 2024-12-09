@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  pay_period_start: 2024-12-10
+  pay_period_end: 2024-12-10
+  hours_worked: 9.99
+  overtime_hours_worked: 9.99
+  reported_tips: 9.99
+  bonus: 9.99
+  gross_pay: 9.99
+  net_pay: 9.99
+  withholding_tax: 9.99
+  social_security_tax: 9.99
+  medicare_tax: 9.99
+  retirement_payment: 9.99
+  roth_retirement_payment: 9.99
+  total_deductions: 9.99
+  total_additions: 9.99
+  status: MyString
+  custom_columns_data: 
+
+two:
+  employee: two
+  pay_period_start: 2024-12-10
+  pay_period_end: 2024-12-10
+  hours_worked: 9.99
+  overtime_hours_worked: 9.99
+  reported_tips: 9.99
+  bonus: 9.99
+  gross_pay: 9.99
+  net_pay: 9.99
+  withholding_tax: 9.99
+  social_security_tax: 9.99
+  medicare_tax: 9.99
+  retirement_payment: 9.99
+  roth_retirement_payment: 9.99
+  total_deductions: 9.99
+  total_additions: 9.99
+  status: MyString
+  custom_columns_data: 
