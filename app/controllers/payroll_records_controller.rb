@@ -5,13 +5,11 @@ class PayrollRecordsController < ApplicationController
   before_action :require_admin, except: [ :index ]
 
   def index
-    # Later, we can add filters (date range, employee, etc.)
     @payroll_records = @company.payroll_records.includes(:employee)
     render json: @payroll_records
   end
 
   def create
-    # Assume we get an employee_id in params
     employee = @company.employees.find(params[:payroll_record][:employee_id])
     @payroll_record = employee.payroll_records.new(payroll_record_params)
     if @payroll_record.save
@@ -45,7 +43,26 @@ class PayrollRecordsController < ApplicationController
   end
 
   def payroll_record_params
-    params.require(:payroll_record).permit(:employee_id, :pay_period_start, :pay_period_end, :hours_worked, :overtime_hours_worked, :reported_tips, :bonus)
+    params.require(:payroll_record).permit(
+      :employee_id,
+      :pay_period_start,
+      :pay_period_end,
+      :hours_worked,
+      :overtime_hours_worked,
+      :reported_tips,
+      :bonus,
+      :gross_pay,
+      :net_pay,
+      :withholding_tax,
+      :social_security_tax,
+      :medicare_tax,
+      :retirement_payment,
+      :roth_retirement_payment,
+      :total_deductions,
+      :total_additions,
+      :status,
+      custom_columns_data: {}
+    )
   end
 
   def require_admin
