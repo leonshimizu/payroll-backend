@@ -35,6 +35,28 @@ class EmployeesController < ApplicationController
     head :no_content
   end
 
+  def import
+    if params[:file].blank?
+      render json: { errors: "No file uploaded" }, status: :bad_request
+      return
+    end
+
+    # We assume the file is an Excel file (e.g., .xlsx).
+    service = EmployeeImporterService.new(@company, params[:file])
+    result = service.call
+
+    if result[:success]
+      render json: {
+        message: "Import completed",
+        created_count: result[:created_count],
+        updated_count: result[:updated_count],
+        errors: result[:errors]
+      }, status: :ok
+    else
+      render json: { errors: result[:errors] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_company
