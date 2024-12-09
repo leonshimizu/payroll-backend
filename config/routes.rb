@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     end
     resources :custom_columns, only: [ :index, :create, :update, :destroy ]
     resources :payroll_records, only: [ :index, :create, :update, :destroy ] do
-      post :bulk
+      collection do
+        post :bulk
+      end
     end
   end
 end
