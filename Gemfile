@@ -23,6 +23,9 @@ gem "jwt", "~> 2.2"
 # Used to parse Excel/CSV files
 gem "roo"
 
+# Used for generating fake names, addresses, etc.
+gem "faker"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
