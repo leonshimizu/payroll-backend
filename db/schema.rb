@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_144143) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_09_144420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_144143) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "custom_columns", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.string "name"
+    t.string "data_type"
+    t.boolean "is_deduction"
+    t.boolean "include_in_payroll"
+    t.boolean "not_subject_to_withholding"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_custom_columns_on_company_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -54,6 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_144143) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "custom_columns", "companies"
   add_foreign_key "departments", "companies"
   add_foreign_key "employees", "departments"
 end
