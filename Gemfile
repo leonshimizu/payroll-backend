@@ -18,7 +18,7 @@ gem "rack-cors"
 gem "bcrypt", "~> 3.1.7"
 
 # For JSON Web Tokens
-gem "jwt", "~> 2.2"
+gem "jwt", "~> 2.10"
 
 # Used to parse Excel/CSV files
 gem "roo"
